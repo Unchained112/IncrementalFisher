@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dddxjgnptg3xk"]
+
+[ext_resource type="Script" path="res://scripts/fish.gd" id="1_dje6v"]
+[ext_resource type="Texture2D" uid="uid://ch157rj5vhw8f" path="res://assets/graphics/SpearFishingAssetsPack/Sprites/Fish1-16x16/Red.png" id="2_whmy7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dtr0"]
+resource_local_to_scene = true
+atlas = ExtResource("2_whmy7")
+region = Rect2(0, 0, 16, 16)
+
+[node name="Fish" type="HBoxContainer"]
+offset_right = 139.0
+offset_bottom = 62.0
+size_flags_vertical = 2
+script = ExtResource("1_dje6v")
+
+[node name="FishSprite" type="TextureRect" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+texture = SubResource("AtlasTexture_2dtr0")
+expand_mode = 3
+
+[node name="FishInfo" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Fish"

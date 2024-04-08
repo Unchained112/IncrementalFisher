@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8j5cmulcl8tu"]
+[gd_scene load_steps=5 format=3 uid="uid://c8j5cmulcl8tu"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_rknas"]
-[ext_resource type="Script" path="res://scripts/fish.gd" id="2_841io"]
 [ext_resource type="Theme" uid="uid://boovbfm5e378e" path="res://assets/MinimalUI.tres" id="2_s8don"]
 [ext_resource type="Script" path="res://scripts/bucket.gd" id="2_socge"]
-[ext_resource type="Texture2D" uid="uid://cpsp7ory2eu2f" path="res://icon.svg" id="2_v0o0d"]
+[ext_resource type="PackedScene" uid="uid://dddxjgnptg3xk" path="res://scenes/fish.tscn" id="4_nh6pg"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_rknas")
@@ -34,13 +33,23 @@ layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.2, 0.533333, 0.870588, 1)
 
+[node name="Button" type="Button" parent="CanvasLayer/HBoxContainer/FishingArea"]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 342.0
+offset_right = 204.0
+offset_bottom = 382.0
+text = "Get fish"
+
 [node name="TabContainer" type="TabContainer" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Bucket" type="TabBar" parent="CanvasLayer/HBoxContainer/TabContainer"]
+[node name="Bucket" type="TabBar" parent="CanvasLayer/HBoxContainer/TabContainer" node_paths=PackedStringArray("v_container")]
 layout_mode = 2
 script = ExtResource("2_socge")
+v_container = NodePath("ScrollContainer/VBoxContainer")
+fish_item = ExtResource("4_nh6pg")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/HBoxContainer/TabContainer/Bucket"]
 layout_mode = 1
@@ -56,25 +65,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 
-[node name="Fish" type="HBoxContainer" parent="CanvasLayer/HBoxContainer/TabContainer/Bucket/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("fish_sprite", "fish_info")]
+[node name="Fish" parent="CanvasLayer/HBoxContainer/TabContainer/Bucket/ScrollContainer/VBoxContainer" instance=ExtResource("4_nh6pg")]
 layout_mode = 2
-size_flags_vertical = 2
-script = ExtResource("2_841io")
-fish_sprite = NodePath("FishSprite")
-fish_info = NodePath("FishInfo")
-
-[node name="FishSprite" type="TextureRect" parent="CanvasLayer/HBoxContainer/TabContainer/Bucket/ScrollContainer/VBoxContainer/Fish"]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("2_v0o0d")
-expand_mode = 5
-
-[node name="FishInfo" type="Label" parent="CanvasLayer/HBoxContainer/TabContainer/Bucket/ScrollContainer/VBoxContainer/Fish"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Fish"
 
 [node name="Shop" type="TabBar" parent="CanvasLayer/HBoxContainer/TabContainer"]
 visible = false
@@ -104,3 +96,5 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_vertical = 8
+
+[connection signal="button_down" from="CanvasLayer/HBoxContainer/FishingArea/Button" to="." method="_on_button_button_down"]
