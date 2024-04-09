@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvgc2xolpv1st"]
+
+[ext_resource type="Texture2D" uid="uid://sasia0yjejhh" path="res://assets/graphics/SpearFishingAssetsPack/Sprites/Shark - 32x32/Shark.png" id="1_hspw4"]
+
+[node name="gamelayout" type="Node2D"]
+
+[node name="farm" type="Node2D" parent="."]
+
+[node name="鱼塘背景" type="ColorRect" parent="farm"]
+offset_right = 1152.0
+offset_bottom = 648.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.0784314, 0.380392, 0.737255, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="钓场入口与快捷钓鱼键" type="Button" parent="farm"]
+offset_right = 184.0
+offset_bottom = 104.0
+text = "钓场入口。
+设计钓场前在此点击钓鱼
+"
+
+[node name="鱼（举例）" type="Area2D" parent="farm"]
+position = Vector2(320, 408)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="farm/鱼（举例）"]
+
+[node name="Sprite2D" type="Sprite2D" parent="farm/鱼（举例）"]
+position = Vector2(0, 1.90735e-05)
+scale = Vector2(12.25, 6.75)
+texture = ExtResource("1_hspw4")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="选中鱼后显示鱼的信息" type="RichTextLabel" parent="farm"]
+offset_left = 920.0
+offset_top = 72.0
+offset_right = 1144.0
+offset_bottom = 496.0
+text = "选中鱼后显示鱼的信息"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="金币" type="TextEdit" parent="HUD"]
+offset_left = 960.0
+offset_right = 1152.0
+offset_bottom = 64.0
+text = "金币显示"
+
+[node name="商店" type="Button" parent="HUD"]
+offset_left = 800.0
+offset_right = 952.0
+offset_bottom = 64.0
+text = "商店，点一下出来占
+满大部分屏幕的商店
+"
+
+[node name="钓场（暂不设计）" type="Node2D" parent="."]
+position = Vector2(-64, 144)
