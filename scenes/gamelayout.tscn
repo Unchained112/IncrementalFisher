@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bvgc2xolpv1st"]
 
-[ext_resource type="Texture2D" uid="uid://sasia0yjejhh" path="res://assets/graphics/SpearFishingAssetsPack/Sprites/Shark - 32x32/Shark.png" id="1_hspw4"]
+[ext_resource type="Texture2D" uid="uid://sasia0yjejhh" path="res://assets/graphics/SpearFishingAssetsPack/Sprites/Shark-32x32/Shark.png" id="1_hspw4"]
 
 [node name="gamelayout" type="Node2D"]
 
