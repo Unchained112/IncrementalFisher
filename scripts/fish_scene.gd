@@ -1,4 +1,5 @@
 extends Area2D
+class_name FishInFarm
 var start_pos
 var adult_weight
 signal reproduction_sig

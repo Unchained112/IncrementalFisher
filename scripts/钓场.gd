@@ -1,5 +1,5 @@
 extends Node2D
-signal get_fish(fish_info)
+signal get_fish(fish_info,max_weight)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,7 +11,8 @@ func _process(delta):
 	pass
 
 func create_fish():
-	var new_fish_info :String = 'new1'
+	var new_fish_info = DesignData.fish_list.pick_random()
+	
 	return new_fish_info
 	
 	
