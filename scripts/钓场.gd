@@ -14,6 +14,7 @@ func create_fish():
 	var new_fish_info :String = 'new1'
 	return new_fish_info
 	
+	
 func _on_钓场入口与快捷钓鱼键_button_down():
 	#print("按下按钮")
 	var new_fish_info = create_fish()
