@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmfl2ehdrbmg1"]
+
+[ext_resource type="Texture2D" uid="uid://sasia0yjejhh" path="res://assets/graphics/SpearFishingAssetsPack/Sprites/Shark-32x32/Shark.png" id="1_16b8r"]
+[ext_resource type="Script" path="res://scripts/fish_scene.gd" id="1_j5coc"]
+
+[node name="fish_scene" type="Area2D"]
+position = Vector2(320, 408)
+script = ExtResource("1_j5coc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1.90735e-05)
+scale = Vector2(12.25, 6.75)
+texture = ExtResource("1_16b8r")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)

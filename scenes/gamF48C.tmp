@@ -14,14 +14,27 @@ fish_scene = ExtResource("3_3ecsg")
 position = Vector2(576, 325)
 scale = Vector2(1.125, 0.887363)
 
+[node name="鱼塘背景" type="ColorRect" parent="farm"]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.0784314, 0.380392, 0.737255, 1)
+metadata/_edit_use_anchors_ = true
+
 [node name="钓场" type="Node2D" parent="farm"]
 script = ExtResource("2_bqprf")
 
 [node name="钓场入口与快捷钓鱼键" type="Button" parent="farm/钓场"]
 offset_right = 184.0
 offset_bottom = 104.0
-text = "点击钓鱼
+text = "钓场入口。
+设计钓场前在此点击钓鱼
 "
+
+[node name="fish_scene" parent="farm" instance=ExtResource("3_3ecsg")]
+visible = false
 
 [node name="选中鱼后显示鱼的信息" type="RichTextLabel" parent="farm"]
 offset_left = 920.0

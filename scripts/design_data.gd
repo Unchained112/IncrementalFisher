@@ -1,4 +1,9 @@
 extends Node
+var fish_
+
+#在/design_data/fish_data.xlsx中修改
+#然后在 https://imrains.gitee.io/excel-to-json/ 转json
+#复制于此
 
 var fish_list = [
 	{
