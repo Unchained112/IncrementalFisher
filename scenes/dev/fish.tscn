@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://ceodcq5m2iwjo"]
+
+[ext_resource type="Texture2D" uid="uid://ch157rj5vhw8f" path="res://assets/graphics/SpearFishingAssetsPack/Sprites/Fish1-16x16/Red.png" id="1_6noxl"]
+
+[sub_resource type="Animation" id="Animation_q3hra"]
+resource_name = "Idle"
+
+[sub_resource type="Animation" id="Animation_ewddv"]
+resource_name = "Move1"
+
+[sub_resource type="Animation" id="Animation_0hej7"]
+resource_name = "Move2"
+
+[sub_resource type="Animation" id="Animation_ll7sg"]
+resource_name = "Move3"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5w6xj"]
+_data = {
+"Idle": SubResource("Animation_q3hra"),
+"Move1": SubResource("Animation_ewddv"),
+"Move2": SubResource("Animation_0hej7"),
+"Move3": SubResource("Animation_ll7sg")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1v4an"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6noxl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Fish" type="Node2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_6noxl")
+hframes = 8
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+libraries = {
+"": SubResource("AnimationLibrary_5w6xj")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1v4an")
