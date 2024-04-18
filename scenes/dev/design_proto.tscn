@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=3 uid="uid://k2sre5qv8i07"]
+
+[ext_resource type="ArrayMesh" uid="uid://caq0uq1uuo7bq" path="res://assets/models/FishProto.obj" id="1_atck7"]
+[ext_resource type="Texture2D" uid="uid://yan4qkejpad8" path="res://assets/models/FishProto.png" id="3_5025o"]
+[ext_resource type="Shader" path="res://scripts/shaders/semi_transparent.gdshader" id="4_yrmt4"]
+[ext_resource type="ArrayMesh" uid="uid://b4h2py5qsbthq" path="res://assets/models/Sand.obj" id="5_w8sif"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7o4kx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p6xy8"]
+albedo_color = Color(0.0784314, 0.203922, 0.392157, 1)
+emission_enabled = true
+emission = Color(0.0784314, 0.203922, 0.392157, 1)
+emission_energy_multiplier = 1.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3darv"]
+albedo_texture = ExtResource("3_5025o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mpl2k"]
+albedo_texture = ExtResource("3_5025o")
+
+[sub_resource type="BoxMesh" id="BoxMesh_1tdmq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_poed1"]
+render_priority = 0
+shader = ExtResource("4_yrmt4")
+shader_parameter/albedo = Color(0, 1, 1, 0.0745098)
+shader_parameter/specular = null
+shader_parameter/offset = 0.01
+shader_parameter/opacity = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ouunp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ahrdv"]
+albedo_color = Color(0.996078, 0.952941, 0.752941, 1)
+emission_enabled = true
+emission = Color(0.996078, 0.952941, 0.752941, 1)
+emission_energy_multiplier = 0.6
+
+[node name="DesignProto" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22399, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.872965, 0.487783, 0, -0.487783, 0.872965, 0, 5.45378, 0)
+shadow_enabled = true
+
+[node name="Waterbox" type="Node3D" parent="."]
+transform = Transform3D(4.38254, 0, 0, 0, 5.26864, 0, 0, 0, 3.25925, -0.674456, 0.94882, -0.0749371)
+
+[node name="BoxWall" type="MeshInstance3D" parent="Waterbox"]
+transform = Transform3D(0.913134, 0, 0, 0, 1.02575, 0, 0, 0, 0.0588029, 0.12401, 0.100966, -0.535243)
+mesh = SubResource("BoxMesh_7o4kx")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_p6xy8")
+
+[node name="BoxWall2" type="MeshInstance3D" parent="Waterbox"]
+transform = Transform3D(-5.49985e-08, 0, 0.0348856, 0, 1.02977, 0, -1.25822, 0, -1.5249e-09, -0.351841, 0.100966, 0.109341)
+mesh = SubResource("BoxMesh_7o4kx")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_p6xy8")
+
+[node name="Sand" type="MeshInstance3D" parent="Waterbox"]
+transform = Transform3D(0.228178, 0, 0, 0, 0.189802, 0, 0, 0, 0.306819, 0.112501, -0.412404, 0.105426)
+mesh = ExtResource("5_w8sif")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_3darv")
+
+[node name="FishProto" type="MeshInstance3D" parent="Waterbox"]
+transform = Transform3D(0.114089, 0, 0, 0, 0.0949011, 0, 0, 0, 0.15341, 0.194906, -0.0628605, 0.148845)
+mesh = ExtResource("1_atck7")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_mpl2k")
+
+[node name="Water" type="MeshInstance3D" parent="Waterbox"]
+transform = Transform3D(0.90013, 0, 0, 0, 1, 0, 0, 0, 1.20655, 0.113194, 0.094384, 0.102226)
+mesh = SubResource("BoxMesh_1tdmq")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_poed1")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.963884, -0.0755043, 0.255395, -0.0202424, 0.935426, 0.352943, -0.265552, -0.345366, 0.900114, 2.20015, 2.90124, 7.97186)
+fov = 32.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(44.5195, 0, 0, 0, -17.2871, 0, 0, 0, 0.988766, 0, 0, -5.01328)
+mesh = SubResource("BoxMesh_ouunp")
+surface_material_override/0 = SubResource("StandardMaterial3D_ahrdv")

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o0tm5oaum5lo"
-path.s3tc="res://.godot/imported/Sprite names.png-5875f147484afda93dc6a73a680e153f.s3tc.ctex"
+uid="uid://yan4qkejpad8"
+path.s3tc="res://.godot/imported/FishProto.png-ffbcea9f40e6cb415ad7b1c8cf373239.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/graphics/SpearFishingAssetsPack/Sprite names.png"
-dest_files=["res://.godot/imported/Sprite names.png-5875f147484afda93dc6a73a680e153f.s3tc.ctex"]
+source_file="res://assets/models/FishProto.png"
+dest_files=["res://.godot/imported/FishProto.png-ffbcea9f40e6cb415ad7b1c8cf373239.s3tc.ctex"]
 
 [params]
 
