@@ -1,0 +1,20 @@
+[gd_resource type="Sky" load_steps=5 format=3 uid="uid://jonn5eom7asv"]
+
+[ext_resource type="Shader" path="res://assets/env/sky.gdshader" id="1_tanui"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a5ldj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yn4o5"]
+seamless = true
+noise = SubResource("FastNoiseLite_a5ldj")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gu028"]
+shader = ExtResource("1_tanui")
+shader_parameter/top_color = Color(0.164706, 0.541176, 0.823529, 1)
+shader_parameter/bottom_color = Color(0.185266, 0.363324, 0.667699, 1)
+shader_parameter/sun_scatter = Color(0.529412, 0.8, 1, 1)
+shader_parameter/star_stength = 0.0
+shader_parameter/clouds_sampler = SubResource("NoiseTexture2D_yn4o5")
+
+[resource]
+sky_material = SubResource("ShaderMaterial_gu028")

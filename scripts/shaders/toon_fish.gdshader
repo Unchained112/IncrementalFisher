@@ -38,7 +38,6 @@ uniform vec3      ToonRampTinting:    source_color;
 	uniform float     SubSurfCutoff:      hint_range(0.0, 1.0) = 0.5;
 	uniform float     SubSurfSmoothness:  hint_range(0.0, 1.0) = 0.05;
 	uniform sampler2D SubSurfTexture:  source_color, hint_default_white;
-	
 #endif
 
 group_uniforms Texture;
@@ -72,6 +71,19 @@ group_uniforms Texture;
 		return textureGrad(smp, uv + uv_dxy_pixels * pixel_size, ddx, ddy);
 	}
 #endif
+
+// fish animation
+uniform float mid_x: hint_range(-0.5, 0.5) = 0.0;
+uniform float tail_move: hint_range(-1.0, 1.0) = 0.0;
+uniform float head_move: hint_range(-1.0, 1.0) = 0.0;
+
+void vertex() {
+	if (VERTEX.x < mid_x) {
+		VERTEX.y = VERTEX.y + (VERTEX.x - mid_x) * tail_move;
+	} else {
+		VERTEX.y = VERTEX.y - (VERTEX.x - mid_x) * head_move;
+	}
+}
 
 void fragment() {
 	vec4 textureColor;
