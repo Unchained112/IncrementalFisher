@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://b4vpv8b0axtf0"
+path.s3tc="res://.godot/imported/fish_13_material.jpg-7bc5ba2080e3332cf17601d594f1ac91.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "f59e795d51c0a979a8f865b1bba58d4a"
+}
+
+[deps]
+
+source_file="res://assets/models/fish_ai/fish_13_material.jpg"
+dest_files=["res://.godot/imported/fish_13_material.jpg-7bc5ba2080e3332cf17601d594f1ac91.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
