@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bls3jpmy0irta"]
+[gd_scene load_steps=15 format=3 uid="uid://bls3jpmy0irta"]
 
 [ext_resource type="Script" path="res://scripts/fish/fish_base.gd" id="1_wiid7"]
 [ext_resource type="Shader" path="res://scripts/shaders/toon_fish.gdshader" id="2_muhlh"]
@@ -6,6 +6,133 @@
 [ext_resource type="Texture2D" uid="uid://m8n8hcsymkfy" path="res://assets/models/fish_ai/fish_01_material.jpg" id="3_40nxa"]
 [ext_resource type="Texture2D" uid="uid://dq22tyirr5gkn" path="res://assets/models/fish_ai/fish_01_Normals.jpg" id="4_v8nq5"]
 [ext_resource type="Texture2D" uid="uid://cettfsorfpt83" path="res://assets/resources/fish_toon_ramp.tres" id="4_xvbql"]
+
+[sub_resource type="Animation" id="Animation_x1ied"]
+resource_name = "move"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FishBody/fish_01/mesh:surface_material_override/0:shader_parameter/move_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-5.0, 1.28]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FishBody/fish_01/mesh:surface_material_override/0:shader_parameter/rot_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [4.2, 4.2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FishBody/fish_01/mesh:surface_material_override/0:shader_parameter/offset_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.05, 0.05]
+}
+
+[sub_resource type="Animation" id="Animation_p3ka7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FishBody/fish_01/mesh:surface_material_override/0:shader_parameter/move_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FishBody/fish_01/mesh:surface_material_override/0:shader_parameter/rot_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FishBody/fish_01/mesh:surface_material_override/0:shader_parameter/offset_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.05]
+}
+
+[sub_resource type="Animation" id="Animation_16nnu"]
+resource_name = "move_fast"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FishBody/fish_01/mesh:surface_material_override/0:shader_parameter/move_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-5.0, 1.28]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FishBody/fish_01/mesh:surface_material_override/0:shader_parameter/rot_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [4.2, 4.2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FishBody/fish_01/mesh:surface_material_override/0:shader_parameter/offset_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.1, 0.1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b306y"]
+_data = {
+"RESET": SubResource("Animation_p3ka7"),
+"move": SubResource("Animation_x1ied"),
+"move_fast": SubResource("Animation_16nnu")
+}
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4nta8"]
 resource_name = "base_material"
@@ -56,24 +183,38 @@ shadow_mesh = SubResource("ArrayMesh_nmdai")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_161r8"]
 render_priority = 0
 shader = ExtResource("2_muhlh")
-shader_parameter/diffuse_light_scale = 0.06
+shader_parameter/diffuse_light_scale = 0.5
+shader_parameter/move_scale = 0.0
+shader_parameter/rot_scale = 0.0
+shader_parameter/offset_scale = 0.05
 shader_parameter/albedo = ExtResource("3_3vhw2")
 shader_parameter/toonramp = ExtResource("4_xvbql")
 
 [node name="FishBase" type="Node3D"]
+rotation_edit_mode = 1
 script = ExtResource("1_wiid7")
 
-[node name="fish_01" type="Node3D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b306y")
+}
 
-[node name="mesh" type="MeshInstance3D" parent="fish_01"]
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(2, 0, 0)
+
+[node name="FishBody" type="Node3D" parent="."]
+rotation_edit_mode = 1
+
+[node name="fish_01" type="Node3D" parent="FishBody"]
+
+[node name="mesh" type="MeshInstance3D" parent="FishBody/fish_01"]
 transform = Transform3D(1.81288, 0, 0, 0, 0, -1.81288, 0, 1.81288, 0, 0, 0, 0)
 mesh = SubResource("ArrayMesh_1xyu0")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_161r8")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.00314766, -0.446331, 0.894862, -0.096946, 0.890515, 0.444504, -0.995285, -0.0881525, -0.040467, 1.14723, 0.527275, 0.108736)
+[node name="WanderTimer" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]

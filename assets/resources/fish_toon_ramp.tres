@@ -2,7 +2,8 @@
 
 [sub_resource type="Gradient" id="Gradient_gkitd"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.202166)
+offsets = PackedFloat32Array(0, 0.805054, 0.906137)
+colors = PackedColorArray(0.118581, 0.118581, 0.118581, 1, 0.572988, 0.572988, 0.572988, 1, 1, 1, 1, 1)
 
 [resource]
 gradient = SubResource("Gradient_gkitd")
