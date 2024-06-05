@@ -5,7 +5,7 @@ extends Node
 # 复制于此
 var fish_list = [
 		{
-			"id": 1,
+			"id": 0,
 			"name": "Red Fish",
 			"rarity": "white",
 			"larvae_img_path": "res://assets/graphics/SpearFishingAssetsPack/Sprites/Fish1-16x16/Red.png",
@@ -15,7 +15,7 @@ var fish_list = [
 			"time_of_reproduction_cycle": 20
 		},
 		{
-			"id": 2,
+			"id": 1,
 			"name": "Ryukin",
 			"rarity": "gold",
 			"larvae_img_path": "res://assets/graphics/SpearFishingAssetsPack/Sprites/Fish2-32x16/Orange.png",

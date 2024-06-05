@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfpxavjmhcxh0"]
+[gd_scene load_steps=9 format=3 uid="uid://dfpxavjmhcxh0"]
 
 [ext_resource type="PackedScene" uid="uid://bls3jpmy0irta" path="res://scenes/fish/fish_base.tscn" id="1_ur5me"]
 [ext_resource type="PackedScene" uid="uid://fp1mv0m4bqyj" path="res://assets/models/env_ai/sand_terra_01.glb" id="2_sqfgr"]
 [ext_resource type="PackedScene" uid="uid://b814sksnej4ji" path="res://scenes/test_wall.tscn" id="3_3sdtj"]
+[ext_resource type="Material" uid="uid://j5ungl4dqmpa" path="res://assets/resources/default_toon_shader.tres" id="4_cgh35"]
 [ext_resource type="PackedScene" uid="uid://cqigeecelcxop" path="res://scenes/test_box.tscn" id="4_rx5k2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lg8b7"]
@@ -34,15 +35,29 @@ rotation_edit_mode = 1
 
 [node name="FishBase" parent="." instance=ExtResource("1_ur5me")]
 
+[node name="FishBase2" parent="." instance=ExtResource("1_ur5me")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.38768)
+
+[node name="FishBase3" parent="." instance=ExtResource("1_ur5me")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.09284)
+
 [node name="sand_terra_01" parent="." instance=ExtResource("2_sqfgr")]
 transform = Transform3D(10.1527, 0, 0, 0, 1, 0, 0, 0, 6.55184, 0.624025, -0.394289, 0.859125)
 
+[node name="mesh" parent="sand_terra_01" index="0"]
+surface_material_override/0 = ExtResource("4_cgh35")
+
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.438246, 0.898855, 0, -0.898855, 0.438246, -0.0428405, 7.35298, 3.79033)
+transform = Transform3D(0.999609, 0.00579158, -0.0273543, -0.00342014, 0.996293, 0.0859575, 0.0277507, -0.0858303, 0.995923, 0.293334, 2.15302, 11.5807)
+fov = 30.0
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(0.999945, 0.00863179, -0.00599827, 0, 0.570651, 0.821193, 0.0105113, -0.821148, 0.570619, 0.162222, 6.26285, 4.27951)
 fov = 60.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.808206, 0.5889, 0, -0.5889, 0.808206, 0, 1.99572, 0)
+transform = Transform3D(0.991879, 0.0748998, -0.102793, 0, 0.808206, 0.5889, 0.127186, -0.584117, 0.801643, 0, 1.99572, 0)
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vywee")
@@ -52,6 +67,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.498091, 1.26324, -2.34145)
 
 [node name="TestWall2" parent="." instance=ExtResource("3_3sdtj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.498091, 1.26324, 3.88322)
+visible = false
 
 [node name="TestWall3" parent="." instance=ExtResource("3_3sdtj")]
 transform = Transform3D(0.0154979, 0, -0.99988, 0, 1, 0, 0.99988, 0, 0.0154979, 4.65121, 1.26324, 0.711449)
@@ -61,3 +77,5 @@ transform = Transform3D(0.0154979, 0, -0.99988, 0, 1, 0, 0.99988, 0, 0.0154979, 
 
 [node name="TestBox" parent="." instance=ExtResource("4_rx5k2")]
 transform = Transform3D(0.896649, 0, -0.442743, 0, 1, 0, 0.442743, 0, 0.896649, 1.40793, -0.0106449, 0.618782)
+
+[editable path="sand_terra_01"]
