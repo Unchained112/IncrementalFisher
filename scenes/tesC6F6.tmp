@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4ksldj0ocr7b"]
+
+[ext_resource type="PackedScene" uid="uid://og3fjcrs2mbn" path="res://scenes/fish/fish_temp.tscn" id="1_4u50h"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_n1csa"]
+[ext_resource type="Script" path="res://scenes/fishdata_label.gd" id="3_owx1l"]
+[ext_resource type="Script" path="res://scenes/RayPickerCamera.gd" id="4_tlyc6"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_n1csa")
+Fish1 = ExtResource("1_4u50h")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -17.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
+modulate = Color(0.133969, 0.387055, 0.694007, 1)
+self_modulate = Color(0.645683, 0.0337913, 0.304077, 1)
+layout_mode = 0
+offset_right = 372.0
+offset_bottom = 68.0
+
+[node name="Addfish" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Add fish"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button3" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button4" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(200, 600)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("3_owx1l")
+
+[node name="RayPickerCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.468824, -0.791466, 9.7039)
+script = ExtResource("4_tlyc6")
+
+[node name="RayCast3D" type="RayCast3D" parent="RayPickerCamera"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.316298, 0.212004, 4.08724)
+
+[connection signal="button_down" from="CanvasLayer/Control/HBoxContainer/Addfish" to="." method="_on_addfish_button_down"]
