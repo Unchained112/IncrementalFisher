@@ -184,6 +184,7 @@ shadow_mesh = SubResource("ArrayMesh_nmdai")
 render_priority = 0
 shader = ExtResource("5_y1ngn")
 shader_parameter/diffuse_light_scale = 0.5
+shader_parameter/emission_scale = 0.2
 shader_parameter/move_scale = 0.0
 shader_parameter/rot_scale = 0.0
 shader_parameter/offset_scale = 0.05

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bls3jpmy0irta"]
+[gd_scene load_steps=20 format=3 uid="uid://bls3jpmy0irta"]
 
 [ext_resource type="Script" path="res://scripts/fish/fish_base.gd" id="1_wiid7"]
 [ext_resource type="Shader" path="res://scripts/shaders/toon_fish.gdshader" id="2_muhlh"]
@@ -44,6 +44,47 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.05]
+}
+
+[sub_resource type="Animation" id="Animation_56uyu"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FishBody/fish_01/mesh:surface_material_override/0:shader_parameter/move_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FishBody/fish_01/mesh:surface_material_override/0:shader_parameter/rot_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FishBody/fish_01/mesh:surface_material_override/0:shader_parameter/offset_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.05, 0.05]
 }
 
 [sub_resource type="Animation" id="Animation_x1ied"]
@@ -124,15 +165,35 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.1, 0.1]
+"values": [0.05, 0.05]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b306y"]
 _data = {
 "RESET": SubResource("Animation_p3ka7"),
+"idle": SubResource("Animation_56uyu"),
 "move": SubResource("Animation_x1ied"),
 "move_fast": SubResource("Animation_16nnu")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wp54x"]
+animation = &"move_fast"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xi315"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f35fs"]
+animation = &"move"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_buk4c"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_wp54x")
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_xi315")
+blend_point_1/pos = 0.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_f35fs")
+blend_point_2/pos = 0.5
+min_space = -1.01
+max_space = 1.01
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4nta8"]
 resource_name = "base_material"
@@ -181,6 +242,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nmdai")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_161r8"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_muhlh")
 shader_parameter/diffuse_light_scale = 0.5
@@ -200,8 +262,26 @@ libraries = {
 "": SubResource("AnimationLibrary_b306y")
 }
 
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendSpace1D_buk4c")
+anim_player = NodePath("../AnimationPlayer")
+parameters/blend_position = -0.00623453
+
 [node name="RayCast3D" type="RayCast3D" parent="."]
-target_position = Vector3(2, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.452718, 0, 0)
+target_position = Vector3(0.5, 0, 0)
+
+[node name="RayCast3DLeft" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222863, 0, 0)
+target_position = Vector3(0, 0, -0.8)
+
+[node name="RayCast3DRight" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.222863, 0, 0)
+target_position = Vector3(0, 0, 0.8)
+
+[node name="RayCast3DBack" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.312645, 0, 0)
+target_position = Vector3(-1, 0, 0)
 
 [node name="FishBody" type="Node3D" parent="."]
 rotation_edit_mode = 1
@@ -218,4 +298,8 @@ surface_material_override/0 = SubResource("ShaderMaterial_161r8")
 wait_time = 0.8
 autostart = true
 
+[node name="SpeedTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]
+[connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]
