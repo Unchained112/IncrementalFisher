@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bls3jpmy0irta" path="res://scenes/fish/fish_base.tscn" id="1_ur5me"]
 [ext_resource type="PackedScene" uid="uid://fp1mv0m4bqyj" path="res://assets/models/env_ai/sand_terra_01.glb" id="2_sqfgr"]
 [ext_resource type="PackedScene" uid="uid://b814sksnej4ji" path="res://scenes/test_wall.tscn" id="3_3sdtj"]
-[ext_resource type="Material" uid="uid://j5ungl4dqmpa" path="res://assets/resources/default_toon_shader.tres" id="4_cgh35"]
+[ext_resource type="Material" uid="uid://j5ungl4dqmpa" path="res://assets/resources/materials/default_toon_shader.tres" id="4_cgh35"]
 [ext_resource type="PackedScene" uid="uid://cqigeecelcxop" path="res://scenes/test_box.tscn" id="4_rx5k2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lg8b7"]

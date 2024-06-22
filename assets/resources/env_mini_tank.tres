@@ -1,0 +1,21 @@
+[gd_resource type="Environment" load_steps=5 format=3 uid="uid://dqyw5brefn13l"]
+
+[sub_resource type="Gradient" id="Gradient_qbxh4"]
+offsets = PackedFloat32Array(0.487179, 0.736264, 0.882784)
+colors = PackedColorArray(0.960784, 0.909804, 0.792157, 1, 0.464083, 0.759026, 0.845135, 1, 0.054902, 0.113725, 0.313726, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cyrc2"]
+gradient = SubResource("Gradient_qbxh4")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_8hujd"]
+panorama = SubResource("GradientTexture2D_cyrc2")
+
+[sub_resource type="Sky" id="Sky_2o0k1"]
+sky_material = SubResource("PanoramaSkyMaterial_8hujd")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_2o0k1")

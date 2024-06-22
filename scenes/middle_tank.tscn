@@ -1,0 +1,78 @@
+[gd_scene load_steps=14 format=3 uid="uid://ckual7rrsjer0"]
+
+[ext_resource type="Shader" path="res://scripts/shaders/blur_vignette.gdshader" id="1_8grr1"]
+[ext_resource type="PackedScene" uid="uid://bwkulkljayear" path="res://assets/models/env/floor-detail.glb" id="2_ygg1a"]
+[ext_resource type="Material" uid="uid://de1g3a1jwrqe2" path="res://assets/resources/materials/toon_dirt.tres" id="3_cp66j"]
+[ext_resource type="PackedScene" uid="uid://oj3nqc0ioyoe" path="res://assets/models/env/rock_smallFlatA.glb" id="4_d7roi"]
+[ext_resource type="PackedScene" uid="uid://b6wk7fbdctvuu" path="res://assets/models/env/rock_tallA.glb" id="5_akk0i"]
+[ext_resource type="PackedScene" uid="uid://conktnf8w6151" path="res://assets/models/env/plant_bushSmall.glb" id="6_r6ej8"]
+[ext_resource type="PackedScene" uid="uid://ok2gc6a4im8g" path="res://assets/models/env/plant_bushDetailed.glb" id="7_r1e1d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ptgb8"]
+shader = ExtResource("1_8grr1")
+shader_parameter/alpha = 0.2
+shader_parameter/inner_radius = 0.28
+shader_parameter/outer_radius = 1.0
+
+[sub_resource type="Gradient" id="Gradient_nbh28"]
+offsets = PackedFloat32Array(0, 0.652015, 0.92674)
+colors = PackedColorArray(0.278431, 0.345098, 0.596078, 1, 0.328648, 0.537369, 0.802216, 1, 0.220286, 0.262405, 0.58604, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_st241"]
+gradient = SubResource("Gradient_nbh28")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_6tua4"]
+panorama = SubResource("GradientTexture2D_st241")
+
+[sub_resource type="Sky" id="Sky_uvao6"]
+sky_material = SubResource("PanoramaSkyMaterial_6tua4")
+
+[sub_resource type="Environment" id="Environment_ap2n8"]
+background_mode = 2
+sky = SubResource("Sky_uvao6")
+
+[node name="MiddleTank" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.657412, 0.468033, -0.590555, 0, 0.783716, 0.621119, 0.753531, 0.408331, -0.515224, -7.775, 8.64882, -6.47336)
+fov = 42.0
+
+[node name="ColorRect" type="ColorRect" parent="Camera3D"]
+material = SubResource("ShaderMaterial_ptgb8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.709435, -0.551414, 0.438913, 0, 0.622774, 0.782402, -0.70477, -0.555063, 0.441818, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ap2n8")
+
+[node name="Objects" type="Node3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="floor-detail2" parent="Objects" instance=ExtResource("2_ygg1a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="floor-detail" parent="Objects/floor-detail2" index="0"]
+surface_material_override/0 = ExtResource("3_cp66j")
+
+[node name="rock_smallFlatA2" parent="Objects" instance=ExtResource("4_d7roi")]
+transform = Transform3D(0.999475, 0, -0.0323876, 0, 1, 0, 0.0323876, 0, 0.999475, -0.228192, 0.00917055, -0.237796)
+
+[node name="rock_tallA2" parent="Objects" instance=ExtResource("5_akk0i")]
+transform = Transform3D(0.340591, 0, 0.366058, 0, 0.5, 0, -0.366058, 0, 0.340591, 0.244413, 0.0254741, 0.238767)
+
+[node name="plant_bushSmall2" parent="Objects" instance=ExtResource("6_r6ej8")]
+transform = Transform3D(0.496733, 0.0570611, 0, -0.0570611, 0.496733, 0, 0, 0, 0.5, 0.331293, 0.0713446, 0.096218)
+
+[node name="plant_bushDetailed2" parent="Objects" instance=ExtResource("7_r1e1d")]
+transform = Transform3D(0.736748, 0, 0.188331, 0, 0.731721, 0, -0.180267, 0, 0.769705, -0.209005, 0, -0.254904)
+
+[editable path="Objects/floor-detail2"]

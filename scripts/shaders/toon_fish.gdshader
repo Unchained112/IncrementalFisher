@@ -4,6 +4,7 @@ shader_type spatial;
 uniform float diffuse_light_scale: hint_range(0.0, 1.0, 0.01) = 0.12;
 uniform sampler2D albedo: source_color;
 uniform sampler2D toonramp: source_color;
+uniform float emission_scale: hint_range(0.0, 1.0, 0.01) = 0.2;
 
 // Animation
 uniform float move_scale: hint_range(-10.0, 10.0, 0.01) = 0.0;
@@ -13,10 +14,11 @@ uniform float offset_scale = 0.1;
 void vertex() {
 	float body = VERTEX.x;
 	VERTEX.y += sin(move_scale + body * rot_scale) * offset_scale;
-} 
+}
 
 void fragment() {
 	ALBEDO = texture(albedo, UV).xyz;
+	EMISSION = ALBEDO * emission_scale;
 }
 
 void light() {
